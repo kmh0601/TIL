@@ -38,3 +38,32 @@
 
 > <비고>   
 > MVC1,2 공부하고, 스프링 공부하면서 직접 웹에서 사용하는 MVC예제 실습해보기
+
+> Model
+```java
+@Getter
+@NoArgsConstructor
+public class Bread{
+    private Long id;
+    private Stirng name;
+    public Bread(Long id, String bread){
+        this.id = id;
+        this.name = bread;
+    }
+        }
+```
+> Controller
+```java
+@Controller
+public class BreadController{
+    private final BreadService breadService;
+    
+    @GetMapping("/search/bread")
+    public String searchBread(@PathVariable String name, Mondel model){
+        boolean result = breadService.findByName(name);
+        model.addAttribute("result", result);
+    } 
+}
+```
+> View 생략 
+> Todo : 어노테이션 없는 MVC 모델 예제 찾아서 추가해보기
